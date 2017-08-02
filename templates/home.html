@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="w3-row">
+    <div class="full-block">
+        <a href="index.html" class="button active">Start</a>
+        <a href="recipes.html" class="button">Recipes</a>
+        <a href="http://home.zenlab.org:8123/states" class="button">Tasks</a>
+        <a href="web.html" class="button">Web</a>
+        <a href="news.html" class="button">News</a>
+        <a href="radio.html" class="button">Radio</a>
+    </div>
+</div>
+
+<div class="w3-container w3-half">
+    {% if garage_status %}
+
+        {% if garage_status.state=='Open' %}
+            <img src="{{ url_for('static', filename='images/open.svg') }}"/>
+        {% else %}
+            <img src="{{ url_for('static', filename='images/closed.svg') }}"/>
+        {% endif %}
+
+    {% endif %}
+</div>
+
+<div class="w3-container w3-half">
+    <div class="clock">
+        <script type="text/javascript">
+            var clock;
+
+            $(document).ready(function() {
+                clock = $('.clock').FlipClock({
+                    clockFace: 'TwelveHourClock'
+                });
+            });
+
+
+        </script>
+    </div>
+</div>
+
+<div class="w3-row">
+
+    <iframe id="forecast_embed" type="text/html" frameborder="0" height="230" width="100%"
+            src="http://forecast.io/embed/#lat=43.0748&lon=-89.3838&name=Madison"></iframe>
+
+</div>
+{% endblock %}
